@@ -28,7 +28,7 @@ function firstRound (bot, player){
         return "it's a tie rock vs rock";
     }else if(bot == "rock" && player == "paper"){
         filled = true;
-        return "You win, Rock beat Paper"
+        return "You win, Paper beat Rock"
     }else if(bot == "rock" && player == "scissors"){
         champion = true;
         return "You lose Rock beat Scissors"
@@ -53,36 +53,54 @@ function firstRound (bot, player){
 }
 
 let roundOne = firstRound;
+    const btn = document.querySelector(".rock");
+    const btn2 = document.querySelector(".paper");
+    const btn3 = document.querySelector(".scissors");
+    
+    btn.addEventListener('click',() => {
+        const game = 'rock';
+        alert(roundOne(computer,game));
+    });
+    
+    btn2.addEventListener('click',() => {
+        const game = 'paper';
+        alert(roundOne(computer(),game));
+    });
+
+    btn3.addEventListener('click',() => {
+        const game = 'scissors';
+        alert(roundOne(computer(),game));
+    });
 
 //section3
-let winBot = 0;
-let winUser = 0;
-let loseBot = 0;
-let loseUser = 0;
-let tie = 0;
+// let winBot = 0;
+// let winUser = 0;
+// let loseBot = 0;
+// let loseUser = 0;
+// let tie = 0;
 
-let signaled;
-function game() {
-    for (let cont = 0; cont < 5; cont++) { 
-        let playerSelect = prompt("choose your role");
-        playerSelect = playerSelect.toLowerCase();
-        signaled = roundOne(computer(),playerSelect);
-        if (champion == true) { 
-            winBot ++;
-            loseUser ++;
+// let signaled;
+// function game() {
+//     for (let cont = 0; cont < 5; cont++) { 
+//         let playerSelect = prompt("choose your role");
+//         playerSelect = playerSelect.toLowerCase();
+//         signaled = roundOne(computer(),playerSelect);
+//         if (champion == true) { 
+//             winBot ++;
+//             loseUser ++;
         
-        } else if (filled == true) { 
-            loseBot ++;
-            winUser ++;
+//         } else if (filled == true) { 
+//             loseBot ++;
+//             winUser ++;
             
-        } else 
-            tie ++;
-            alert(signaled);
-    }
-    return winBot > winUser  
-    ?"The winner is the Machine"
-    :winUser > tie || winUser > winBot
-    ? "You are the winner"
-    : "it's a tie in whole game"
-}
-alert(game());
+//         } else 
+//             tie ++;
+//             alert(signaled);
+//     }
+//     return winBot > winUser  
+//     ?"The winner is the Machine"
+//     :winUser > tie || winUser > winBot
+//     ? "You are the winner"
+//     : "it's a tie in whole game"
+// }
+// alert(game());
