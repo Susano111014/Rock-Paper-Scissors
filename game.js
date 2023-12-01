@@ -51,7 +51,7 @@ function firstRound (bot, player){
         filled = true;
         return "You win Rock beat Scissors"
 }
-//variables of the five plays counts;
+//variables of the five play counts;
 let winBot = 0;
 let winUser = 0;
 let loseBot = 0;
@@ -66,7 +66,7 @@ let roundOne = firstRound;
     const score = document.querySelector(".score");
     score.setAttribute("style","width:250px; height:100px; background-color: yellow; text-align:center;");
     const textScore = document.querySelector(".text"); 
-
+    const counter = document.querySelectorAll(".counter");
     let fiveRounds = 0;
     btn.addEventListener("click", () => {
         textScore.textContent = "";
@@ -77,6 +77,9 @@ let roundOne = firstRound;
         console.log(score);
         countGame();
         fiveRounds++;
+        counter[0].textContent = winUser;
+        counter[1].textContent = loseUser;
+        counter[2].textContent = tie; 
         (fiveRounds == 5)
         ?testWinner()
         :"Not Passed";
@@ -100,7 +103,7 @@ let roundOne = firstRound;
 
     
 
-//section3
+//counter the wins, loses and tie 
 
 function countGame() {
         
