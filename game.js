@@ -51,56 +51,89 @@ function firstRound (bot, player){
         filled = true;
         return "You win Rock beat Scissors"
 }
+//variables of the five plays counts;
+let winBot = 0;
+let winUser = 0;
+let loseBot = 0;
+let loseUser = 0;
+let tie = 0;
 
+//section3
 let roundOne = firstRound;
     const btn = document.querySelector(".rock");
     const btn2 = document.querySelector(".paper");
     const btn3 = document.querySelector(".scissors");
-    
-    btn.addEventListener('click',() => {
-        const game = 'rock';
-        alert(roundOne(computer,game));
+    const score = document.querySelector(".score");
+    score.setAttribute("style","width:250px; height:100px; background-color: yellow; text-align:center;");
+    const textScore = document.querySelector(".text"); 
+
+    let fiveRounds = 0;
+    btn.addEventListener("click", () => {
+        textScore.textContent = "";
+        let game = "rock";
+        let winner = roundOne(computer(),game)
+        textScore.textContent += `${winner}`;
+        textScore.setAttribute("style","white-space: break-spaces")
+        console.log(score);
+        countGame();
+        fiveRounds++;
+        (fiveRounds == 5)
+        ?testWinner()
+        :"Not Passed";
     });
     
-    btn2.addEventListener('click',() => {
-        const game = 'paper';
-        alert(roundOne(computer(),game));
+    btn2.addEventListener("click",() => {
+        textScore.textContent = "";
+        let game = "paper";
+        let winner = roundOne(computer(),game);
+        textScore.textContent += `Score ${winner}`;
+        console.log(score);
     });
 
-    btn3.addEventListener('click',() => {
-        const game = 'scissors';
-        alert(roundOne(computer(),game));
+    btn3.addEventListener("click",() => {
+        textScore.textContent = "";
+        let game = 'scissors';
+        let winner = roundOne(computer(),game);
+        textScore.textContent += `Score ${winner}`;
+        console.log(score);
     });
+
+    
 
 //section3
-// let winBot = 0;
-// let winUser = 0;
-// let loseBot = 0;
-// let loseUser = 0;
-// let tie = 0;
 
-// let signaled;
-// function game() {
-//     for (let cont = 0; cont < 5; cont++) { 
-//         let playerSelect = prompt("choose your role");
-//         playerSelect = playerSelect.toLowerCase();
-//         signaled = roundOne(computer(),playerSelect);
-//         if (champion == true) { 
-//             winBot ++;
-//             loseUser ++;
+function countGame() {
         
-//         } else if (filled == true) { 
-//             loseBot ++;
-//             winUser ++;
+    if (champion == true) { 
+            winBot ++;
+            loseUser ++;
+        
+        } else if (filled == true) { 
+            loseBot ++;
+            winUser ++;
             
-//         } else 
-//             tie ++;
-//             alert(signaled);
-//     }
-//     return winBot > winUser  
-//     ?"The winner is the Machine"
-//     :winUser > tie || winUser > winBot
-//     ? "You are the winner"
-//     : "it's a tie in whole game"
-// }
-// alert(game());
+        } else 
+            tie ++;
+    }
+     
+function testWinner (){
+    if(winBot > winUser ){
+        textScore.textContent += `
+
+The winner is the bot`;
+    }else if(winUser > tie || winUser > winBot){
+        textScore.textContent += `
+
+You are the winner of the game!`;
+    }else 
+        textScore.textContent += `
+
+its a tie in whole game`;
+    
+    fiveRounds = 0;
+    winBot = 0;
+    winUser = 0;
+    loseBot = 0;
+    loseUser = 0;
+    tie = 0;
+ }
