@@ -1,5 +1,5 @@
 // getComputerChoice();
-//section1//
+//section1// //section 2 random throw roll game which choose bot
 let randomNum =  Math.floor(Math.random() * 3);
 
 function getComputerChoice () {
@@ -16,8 +16,7 @@ function getComputerChoice () {
     }
 }
 
-//section2
-let computer = getComputerChoice;
+const computer = getComputerChoice;
 
 let filled = false;
 let champion = false;
@@ -58,6 +57,7 @@ let loseBot = 0;
 let loseUser = 0;
 let tie = 0;
 
+
 //section3
 let roundOne = firstRound;
     const btn = document.querySelector(".rock");
@@ -68,6 +68,7 @@ let roundOne = firstRound;
     const textScore = document.querySelector(".text"); 
     const counter = document.querySelectorAll(".counter");
     let fiveRounds = 0;
+    
     btn.addEventListener("click", () => {
         textScore.textContent = "";
         let game = "rock";
@@ -76,10 +77,10 @@ let roundOne = firstRound;
         textScore.setAttribute("style","white-space: break-spaces")
         console.log(score);
         countGame();
-        fiveRounds++;
-        counter[0].textContent = winUser;
-        counter[1].textContent = loseUser;
-        counter[2].textContent = tie; 
+        counter[0].textContent = `user won points ${winUser}`;
+        counter[1].textContent = `user lose points ${loseUser}`;
+        counter[2].textContent = `bot won points ${winBot}`; 
+        counter[3].textContent = `bot lose points ${loseBot}`;
         (fiveRounds == 5)
         ?testWinner()
         :"Not Passed";
@@ -91,6 +92,14 @@ let roundOne = firstRound;
         let winner = roundOne(computer(),game);
         textScore.textContent += `Score ${winner}`;
         console.log(score);
+        countGame();
+        counter[0].textContent = `user won points ${winUser}`;
+        counter[1].textContent = `user lose points ${loseUser}`;
+        counter[2].textContent = `bot won points ${winBot}`; 
+        counter[3].textContent = `bot lose points ${loseBot}`;
+        (fiveRounds == 5)
+        ?testWinner()
+        :"Not Passed";
     });
 
     btn3.addEventListener("click",() => {
@@ -99,26 +108,33 @@ let roundOne = firstRound;
         let winner = roundOne(computer(),game);
         textScore.textContent += `Score ${winner}`;
         console.log(score);
+        countGame();
+        counter[0].textContent = `user won points ${winUser}`;
+        counter[1].textContent = `user lose points ${loseUser}`;
+        counter[2].textContent = `bot won points ${winBot}`; 
+        counter[3].textContent = `bot lose points ${loseBot}`;
+        (fiveRounds == 5)
+        ?testWinner()
+        :"Not Passed";
     });
 
     
 
-//counter the wins, loses and tie 
+//count the wins, losses and tie once iteration game round
 
-function countGame() {
-        
+function countGame() {    
     if (champion == true) { 
             winBot ++;
             loseUser ++;
-        
+            fiveRounds++;
         } else if (filled == true) { 
             loseBot ++;
             winUser ++;
-            
+            fiveRounds++;
         } else 
             tie ++;
     }
-     
+    //function which is used for send the winner, loser and tie in the whole game.
 function testWinner (){
     if(winBot > winUser ){
         textScore.textContent += `
@@ -128,11 +144,7 @@ The winner is the bot`;
         textScore.textContent += `
 
 You are the winner of the game!`;
-    }else 
-        textScore.textContent += `
-
-its a tie in whole game`;
-    
+    }  
     fiveRounds = 0;
     winBot = 0;
     winUser = 0;
