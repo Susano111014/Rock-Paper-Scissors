@@ -63,19 +63,20 @@ let roundOne = firstRound;
     const btn = document.querySelector(".rock");
     const btn2 = document.querySelector(".paper");
     const btn3 = document.querySelector(".scissors");
-    const score = document.querySelector(".score");
-    score.setAttribute("style","width:250px; height:100px; background-color: yellow; text-align:center;");
+    const score = document.querySelector(".score");//is the table display witch mark the game's score
+    score.setAttribute("style","width:250px; height:100px; text-align:center;");
     const textScore = document.querySelector(".text"); 
     const counter = document.querySelectorAll(".counter");
     let fiveRounds = 0;
     
+
     btn.addEventListener("click", () => {
         textScore.textContent = "";
         let game = "rock";
-        let winner = roundOne(computer(),game)
+        let winner = roundOne(computer(),game);
         textScore.textContent += `${winner}`;
-        textScore.setAttribute("style","white-space: break-spaces")
-        console.log(score);
+        score.style.background = '#D0021B';
+        textScore.setAttribute("style","white-space: break-spaces"); 
         countGame();
         counter[0].textContent = `user won points ${winUser}`;
         counter[1].textContent = `user lose points ${loseUser}`;
@@ -91,6 +92,8 @@ let roundOne = firstRound;
         let game = "paper";
         let winner = roundOne(computer(),game);
         textScore.textContent += `Score ${winner}`;
+        score.style.background = '#F8E71C';
+        textScore.setAttribute("style","white-space: break-spaces");
         console.log(score);
         countGame();
         counter[0].textContent = `user won points ${winUser}`;
@@ -107,6 +110,8 @@ let roundOne = firstRound;
         let game = 'scissors';
         let winner = roundOne(computer(),game);
         textScore.textContent += `Score ${winner}`;
+        score.style.background = '#7ED321';
+        textScore.setAttribute("style","white-space: break-spaces");
         console.log(score);
         countGame();
         counter[0].textContent = `user won points ${winUser}`;
@@ -119,7 +124,6 @@ let roundOne = firstRound;
     });
 
     
-
 //count the wins, losses and tie once iteration game round
 
 function countGame() {    
